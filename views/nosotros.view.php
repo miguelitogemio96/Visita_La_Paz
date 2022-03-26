@@ -1,29 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    
-    <title>Visita La Paz</title>
-
-</head>
-<body>
-    <header class="header">
-        <a href="index.html">
-            <img class="header__logo" src="img/logo.PNG" alt="Logotipo">
-        </a>
-    </header>
+<?php require 'header.php';?>
     <nav class="navegacion">
-        <a class="navegacion__enlace" href="index.html">Inicio</a>
-        <a class="navegacion__enlace" href="hoteles.html">Hoteles</a>
-        <a class="navegacion__enlace" href="turismo.html">Turismo</a>
-        <a class="navegacion__enlace navegacion__enlace--activo" href="nosotros.html">Nosotros</a>
+        <a class="navegacion__enlace" href="<?php echo RUTA; ?>index.php">Inicio</a>
+        <a class="navegacion__enlace" href="<?php echo RUTA; ?>productos.php">Productos</a>
+        <a class="navegacion__enlace" href="<?php echo RUTA; ?>servicios.php">Servicios</a>
+        <a class="navegacion__enlace navegacion__enlace--activo" href="<?php echo RUTA; ?>nosotros.php">Nosotros</a>
+        <a class="navegacion__enlace" href="<?php echo RUTA; ?>login.php">Iniciar Sesion</a>
+
     </nav>
 
     <main class="contenedor">
@@ -37,7 +19,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis at pariatur cupiditate harum modi eaque rerum natus possimus sit magni! Eligendi laudantium harum pariatur hic beatae dolorum sunt sint tenetur!
                 </p>
             </div>
-            <img class="nosotros__imagen" src="img/nosotros.jpg" alt="Imagen nosotros">
+            <img class="nosotros__imagen" src="<?php echo RUTA; ?>img/Logo_Umsa.JPG" alt="Imagen nosotros">
         </div>        
     </main>
     <section class="contenedor comprar">

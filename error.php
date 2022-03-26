@@ -1,0 +1,1 @@
+<?php echo 'Error al cargar la pagina';?>
