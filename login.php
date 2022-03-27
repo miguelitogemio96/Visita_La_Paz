@@ -26,11 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('Location: error.php');
     }
 
-// 	$statement = $conexion->prepare('SELECT * FROM usuarios WHERE usuario = :usuario AND pass = :password');
-// 	$statement->execute(array(
-// 			':usuario' => $usuario,
-// 			':password' => $password
-// 		));
 
 	$resultado = validar_usuario($usuario, $password, $conexion);
     // print_r($resultado);

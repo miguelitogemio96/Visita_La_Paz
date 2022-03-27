@@ -1,4 +1,5 @@
-<?php require 'header.php';
+<?php 
+require 'header.php';
 ?>
     <nav class="navegacion">
         <a class="navegacion__enlace navegacion__enlace--activo" href="<?php echo RUTA; ?>index.php">Inicio</a>
@@ -34,13 +35,17 @@
                     </div>
                     <div class="comentario">
                         <h3 class="comentario__label">Comentarios:</h3>
+                        <?php foreach(obtener_comentarios($post['id_pub'], $conexion) as $comentario):?>
                         <div class="comentario__usuario">
-                            <h4 class="comentario__usuario--username">Miguelito96</h4>
-                            <p class="comentario__usuario--texto">Genial Aporte, me gusta!</p>
+                            <h4 class="comentario__usuario--username"><?php echo $comentario['username']; ?></h4>
+                            <p class="comentario__usuario--texto"><?php echo $comentario['des']; ?></p>
                         </div>
-                        <form action="#" class="formulario__comentario">
-                            <input type="text" class="comentario__input" placeholder="Deja tu comentario...">
+                        <?php endforeach; ?>
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" class="formulario__comentario" method="POST">
+                            <input type="text" class="comentario__input" id="comentario" name="comentario" placeholder="Deja tu comentario...">
                             <input class="comentario__submit" type="submit" value="Comentar">
+                            <input type="hidden" id="id_post" name="id_post" value="<?php echo $post['id_pub']; ?>">
+                            <input type="hidden" id="pagina" name="pagina" value="<?php echo pagina_actual(); ?>">
                         </form>
                     </div>
                 </div>

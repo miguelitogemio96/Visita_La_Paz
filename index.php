@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'admin/config.php';
 require 'funciones.php';
 
@@ -8,6 +8,21 @@ if (!$conexion) {
     header('Location: error.php');
 }
 
+// Obtenemos los datos del usuario
+$usuario = $_SESSION['usuario'];
+$datos_usuario = verificar_username($usuario, $conexion);
+
+// verificar usuario logeado si se hace un comentario 
+$comentario = '';
+if(($_SERVER['REQUEST_METHOD'] == 'POST') && ($_POST['comentario'] != '')){
+    if (isset($_SESSION['usuario'])){
+        $comentario = $_POST['comentario'];
+        insertar_comentario($_POST['id_post'], $datos_usuario['id_usuario'], $comentario, $conexion);
+        header('Location:index.php?p='.$_POST['pagina']);
+    }else {
+        printf("<script type='text/javascript'>alert('Debes Iniciar Sesión'); </script>");
+    }
+}
 
 
 $posts = obtener_post_publicaciones($visita_config['publicaciones_por_pagina'],$conexion);
@@ -20,24 +35,6 @@ if(!$posts) {
     header('Location: error.php');
 }
 
-// $prueba = obtener_prod_ser(21, $conexion);
-// print_r($prueba);
-// echo "Hola".$prueba['tipo'];
-
-// $tipo = obtener_tipo_prod_ser(3, $conexion);
-// echo $tipo;
-
-// $bd_config2 = array(
-//     'basedatos' => 'visita_bd',
-//     'usuario' => 'root',
-//     'pass' => 'mysql'
-// );
-// print_r($bd_config2);
-// $bd_config2['nuevo'] = "hola";
-// print_r($bd_config2);
-
-// $numero_paginas = numero_paginas($visita_config['publicaciones_por_pagina'], $conexion);
-// echo $numero_paginas;
 
 require 'views/index.view.php';
 ?>

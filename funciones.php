@@ -108,4 +108,17 @@ function insertar_usuario($usuario, $contraseña, $conexion) {
     $sentencia->execute(array(':usuario' => $usuario, ':pass' => $contraseña));
 }
 
+function insertar_comentario($id_pub, $id_usuario, $comentario, $conexion) {
+    $sentencia = $conexion->prepare("INSERT INTO comentarios (id_comentario, id_pub, id_usuario, fecha, des, likes) VALUES (NULL, :id_pub, :id_usuario, '2022-03-09', :des, '0')");
+    $sentencia->execute(array(':id_pub' => $id_pub, 
+                            ':id_usuario' => $id_usuario,
+                            ':des' => $comentario ));
+}
+
+function obtener_comentarios($id_pub, $conexion){
+    // SELECT u.username, c.des FROM comentarios c, usuarios u WHERE c.id_pub = '11' and c.id_usuario = u.id_usuario
+    $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS u.username, c.des FROM comentarios c, usuarios u WHERE c.id_pub = $id_pub AND c.id_usuario = u.id_usuario");
+    $sentencia->execute();
+    return $sentencia->fetchAll();  
+}
 ?>
